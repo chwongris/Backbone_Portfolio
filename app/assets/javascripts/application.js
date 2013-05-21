@@ -27,4 +27,16 @@ $(document).ready(function() {
   // Create a view for the first Project and render it
   // var view = new app.views.ProjectView({ model: projectList.first() });
   // $('#project-list').append(view.render().el);
+  
+  var me = new app.models.User({
+    first_name: "Chris",
+    last_name: "Wong",
+    bio: "Coder from NYC",
+    mission: "Make Cool Apps",
+    image_url: 'uploads/chwong.jpg'
+  });
+
+  new app.views.UserView({
+    model: me 
+  }).render();
 });
