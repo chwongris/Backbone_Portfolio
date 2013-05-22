@@ -3,8 +3,8 @@ app.models.Project = Backbone.Model.extend({
   initialize: function() {
     this.skillList = new app.collections.SkillList();
     this.skillList.add([
-  {name: "Flying Dutchman"},
-  {name: "Black Pearl"}
+  {name: "Jquery"},
+  {name: "Ajax"}
 ]);
    }
     

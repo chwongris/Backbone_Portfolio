@@ -2,7 +2,7 @@ app.views.SkillView = Backbone.View.extend({
 
   tagName: 'li',
   className: 'skill',
-  template: _.template($('#skill-template').html()),
+  template: JST['templates/_skill'],
   events: {
     'click .delete': 'deleteSkill',
     'blur .edit-title': 'escapeTitle',

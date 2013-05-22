@@ -2,7 +2,7 @@ app.views.UserView = Backbone.View.extend({
 
   tagName: 'div',
   id: 'bio',
-  template: _.template($('#user-template').html()),
+  template: JST['templates/user'],
   render: function() {
 
   var html = this.template({
@@ -10,8 +10,6 @@ app.views.UserView = Backbone.View.extend({
   });
 
   this.$el.html(html);
-  
-  $('#user-bio').html(this.el);
 
   return this;
 

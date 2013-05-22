@@ -1,66 +1,58 @@
 app.views.ProjectView = Backbone.View.extend({
 
   tagName: 'div',
-  className: 'project',
-  template: _.template($('#project-template').html()),
-  events: {
-    'dblclick .project-name': 'editProjectName',
-    'dblclick .body': 'editProjectBody',
-    // 'dblclick .url': 'editProjectUrl',
-    'keypress .edit-title': 'updateTitle',
-    'keypress .edit-body': 'updateBody',
-    'blur .edit-title': 'escapeTitle',
-    'blur .edit-body': 'escapeBody'
-  },
+  id: 'project-page',
+  template: JST['templates/project'],
 
   render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
-    return this;
-  },
+    this.$el.html(this.template());
 
-  editProjectName: function() {
-    this.$el.addClass('editing');
-    this.$el.find('.edit-title').show().focus().prev('h3').hide();
-  },
-
-  escapeTitle: function() {
-  this.$el.find('.edit-title').val('').hide().prev('h3').fadeIn(400);
-  },
-
-  updateTitle: function() {
-    var new_title = this.$el.find('.edit-title').val().trim();
-    if(event.which !== 13 || !new_title) {
-      return;
+    var projectList = new app.collections.ProjectList();
+    projectList.fetch();
+    // Create a dummy project if there isn't one already
+    if(projectList.length == 0) {
+      var bucket_list = projectList.create({
+        title: "Bucketlist",
+        url: "https://github.com/dmgarland/BucketListApp",
+        body: "<p>I worked on a Rails application that created a todo list of things I want to do before I die.</p> <ul> <li>I integrated Google maps and used Geocoding to determine where my activities would take place.</li> <li>I used AJAX to asynchronously update markers on the map when the center changed.</li> <li>I displayed crime statistics on a chart using an API call and Morris.js</li> </ul>"
+      });
     }
 
-    this.model.set('title', new_title);
-    this.model.save();
-    this.$el.find('.edit-title').val('').hide().prev('h3').fadeIn(400).html(new_title);
-  },
+    // Create a blank project for us to fill in.
+    projectList.add({
+      title: "New Project",
+      url: "Click to edit",
+      body: "Click to edit"
+    });
 
-  editProjectBody: function() {
-  this.$el.addClass('editing');
-  this.$el.find('.edit-body').show().focus().next('.body').hide();
-  },
+    var _this = this;
 
-  updateBody: function() {
-  var new_body = this.$el.find('.edit-body').val().trim();
-  if(event.which !== 13 || !new_body) {
-    return;
+    projectList.forEach(function(project) {
+      var view = new app.views._Project({ model: project });
+      _this.$el.find('#project-list').append(view.render().el);
+     
+    });
+
+    // projectList.forEach(function(project) {
+    //   var view = new app.views.ProjectView({ model: project });
+    //   $('#project-list').append(view.render().el);
+      
+    // });
+
+    var me = new app.models.User({
+      first_name: "Chris",
+      last_name: "Wong",
+      bio: "Coder from NYC",
+      mission: "Make Cool Apps",
+      image_url: 'uploads/chwong.jpg'
+    });
+
+    var bio = new app.views.UserView({
+      model: me 
+    }).render();
+
+    this.$el.find('#user-bio').html(bio.el);
+
+    return this;
   }
-
-  this.model.set('body', new_body);
-  this.model.save();
-  this.$el.find('.edit-body').val('').hide().next('.body').fadeIn(400).html(new_body);
-  },
-
-  escapeBody: function() {
-  this.$el.find('.edit-body').val('').hide().next('.body').fadeIn(400);
-  },
-
-  editProjectUrl: function() {
-  this.$el.addClass('editing');
-  this.$el.find('.edit-url').show().focus().next('a').hide();
-  },
-
 });

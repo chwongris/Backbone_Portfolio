@@ -12,17 +12,14 @@
 //
 //= require jquery-1.9.1.min
 //= require underscore-min
+//= require ejs_production
 //= require backbone-min
 //= require backbone.localStorage-min
 //= require boot
-//= require views/home
-//= require views/project_view
-//= require views/user_view
-//= require views/skill_view
-//= require init
 //= require router
-//= require models/project
-//= require models/user
-//= require models/skill
-//= require collections/project_list
-//= require collections/skill_list
+
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./templates
+//= require_tree ./views
+//= require init

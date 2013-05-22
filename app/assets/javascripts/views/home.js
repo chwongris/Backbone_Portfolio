@@ -1,11 +1,10 @@
 
 app.views.Home = Backbone.View.extend({
 
-  template: _.template($('#home-template').html()),
+  template: JST['templates/home'],
 
   render: function() {
     this.$el.html(this.template());
-    $('#content').html(this.el);
     return this;
   }
 
