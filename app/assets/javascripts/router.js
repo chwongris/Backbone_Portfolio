@@ -1,16 +1,20 @@
 app.Router = Backbone.Router.extend({
 
   routes: {
-  '' : 'projectIndex',
-  'project/:cid' : 'projectShow'
+    '' : 'home',
+    'user/:id' : 'userShow'
   },
 
-  projectIndex: function () {
+  home: function () {
     // Try to find projects already in the local storage
+    var homeview = new app.views.Home();
+    homeview.render();
+  },
+
+
+  userShow: function () {
     var projectList = new app.collections.ProjectList();
     projectList.fetch();
-
-
     // Create a dummy project if there isn't one already
     if(projectList.length == 0) {
       var bucket_list = projectList.create({
@@ -32,14 +36,14 @@ app.Router = Backbone.Router.extend({
       $('#project-list').append(view.render().el);
       project.skillList.forEach(function(skill) {
         skillview = new app.views.SkillView({ model: skill });
-        $('.skill-list').append(skillview.render().el);
+        $el.find('.skill-list').append(skillview.render().el);
       });
     });
 
     // Create a view for the first Project and render it
     // var view = new app.views.ProjectView({ model: projectList.first() });
     // $('#project-list').append(view.render().el);
-  
+
     var me = new app.models.User({
       first_name: "Chris",
       last_name: "Wong",
