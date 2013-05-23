@@ -10,7 +10,8 @@ app.views._Project = Backbone.View.extend({
     'keypress .edit-title': 'updateTitle',
     'keypress .edit-body': 'updateBody',
     'blur .edit-title': 'escapeTitle',
-    'blur .edit-body': 'escapeBody'
+    'blur .edit-body': 'escapeBody',
+    'click .add-skill' : 'addSkill'
   },
 
   render: function() {
@@ -71,5 +72,17 @@ app.views._Project = Backbone.View.extend({
   this.$el.addClass('editing');
   this.$el.find('.edit-url').show().focus().next('a').hide();
   },
+
+  addSkill: function() {
+    var skilltest = this.model
+    var skill = new app.views.SkillView({
+      project: skilltest,
+      model: new app.models.Skill({
+        name: "Click here to edit"
+      })
+    });
+
+    this.$el.find('#skill-list').append(skill.render().el).find(".skill:last").hide().fadeIn();
+   }
 
 });

@@ -5,8 +5,11 @@ app.views.SkillView = Backbone.View.extend({
   template: JST['templates/_skill'],
   events: {
     'click .delete': 'deleteSkill',
-    'blur .edit-title': 'escapeTitle',
-    'blur .edit-body': 'escapeBody'
+    // 'blur .edit-title': 'escapeTitle',
+    // 'blur .edit-body': 'escapeBody',
+    // 'click .edit-body': 'escapeBody',
+    'click .name' : 'editSkill',
+    'change .edit-name': 'updateSkill'
   },
 
   render: function() {
@@ -15,7 +18,19 @@ app.views.SkillView = Backbone.View.extend({
   },
 
   deleteSkill: function() {
-    this.$el.find('.skill').hide();
+    this.model.destroy();
+   $(event.currentTarget).toggle('slide');
+  },
+ 
+  editSkill: function() {
+  $(event.target).hide().next('.edit-name').show().focus();
+  },
+
+  updateSkill: function() {
+   $(event.target).hide().prev('.name').show();
+   var newName = $(event.target).val();
+   this.model.set({ name : newName });
+   this.options.project.skillList.create({name: "test"});
   }
 
   // escapeTitle: function() {
@@ -33,10 +48,7 @@ app.views.SkillView = Backbone.View.extend({
   //   this.$el.find('.edit-title').val('').hide().prev('h3').fadeIn(400).html(new_title);
   // },
 
-  // editProjectBody: function() {
-  // this.$el.addClass('editing');
-  // this.$el.find('.edit-body').show().focus().next('.body').hide();
-  // },
+  
 
   // updateBody: function() {
   // var new_body = this.$el.find('.edit-body').val().trim();
