@@ -11,16 +11,19 @@ app.views._Project = Backbone.View.extend({
     'keypress .edit-body': 'updateBody',
     'blur .edit-title': 'escapeTitle',
     'blur .edit-body': 'escapeBody',
-    'click .add-skill' : 'addSkill'
+    'click .add-skill' : 'addSkill',
+    'click .remove-project' : 'deleteProject'
   },
+
+ 
 
   render: function() {
     
     var _this = this;
 
     this.$el.html(this.template({project: this.model}));
-    
-    this.model.skillList.forEach(function(skill) {
+    // this.model.skillList.fetch();
+    this.model.getSkills().forEach(function(skill) {
         skillview = new app.views.SkillView({ model: skill });
         _this.$el.find('#skill-list').append(skillview.render().el);
       });    
@@ -73,16 +76,21 @@ app.views._Project = Backbone.View.extend({
   this.$el.find('.edit-url').show().focus().next('a').hide();
   },
 
+  deleteProject: function() {
+    this.model.destroy();
+   $(event.currentTarget).toggle('slide');
+  },
+
   addSkill: function() {
-    var skilltest = this.model
     var skill = new app.views.SkillView({
-      project: skilltest,
+      project: this.model,
       model: new app.models.Skill({
-        name: "Click here to edit"
+        name: "Click here to edit",
+        project_id: this.model.id
       })
     });
 
-    this.$el.find('#skill-list').append(skill.render().el).find(".skill:last").hide().fadeIn();
+    this.$el.find('#skill-list').append(skill.render().el).find('.skill:last').hide().fadeIn();
    }
 
 });

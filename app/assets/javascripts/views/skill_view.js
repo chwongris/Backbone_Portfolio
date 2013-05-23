@@ -11,9 +11,20 @@ app.views.SkillView = Backbone.View.extend({
     'click .name' : 'editSkill',
     'change .edit-name': 'updateSkill'
   },
+  
+   initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'destroy', this.remove);
+    // if(this.options.project)
+    //   this.model.set({ project_id: this.options.project.id });
+    // this.model.view = this;
+    // this.model.bind("change", this.setName);
+  },
 
   render: function() {
-    this.$el.html(this.template(this.model.toJSON()));
+    this.$el.html(this.template({
+      name: this.model.attributes.name
+    }));
     return this;
   },
 
@@ -30,44 +41,13 @@ app.views.SkillView = Backbone.View.extend({
    $(event.target).hide().prev('.name').show();
    var newName = $(event.target).val();
    this.model.set({ name : newName });
-   this.options.project.skillList.create({name: "test"});
+   if(this.model.isNew()){
+    this.options.project.skillList.create(this.model);
+   }
+   else {
+    this.model.save();
+  }
   }
 
-  // escapeTitle: function() {
-  // this.$el.find('.edit-title').val('').hide().prev('h3').fadeIn(400);
-  // },
-
-  // updateTitle: function() {
-  //   var new_title = this.$el.find('.edit-title').val().trim();
-  //   if(event.which !== 13 || !new_title) {
-  //     return;
-  //   }
-
-  //   this.model.set('title', new_title);
-  //   this.model.save();
-  //   this.$el.find('.edit-title').val('').hide().prev('h3').fadeIn(400).html(new_title);
-  // },
-
-  
-
-  // updateBody: function() {
-  // var new_body = this.$el.find('.edit-body').val().trim();
-  // if(event.which !== 13 || !new_body) {
-  //   return;
-  // }
-
-  // this.model.set('body', new_body);
-  // this.model.save();
-  // this.$el.find('.edit-body').val('').hide().next('.body').fadeIn(400).html(new_body);
-  // },
-
-  // escapeBody: function() {
-  // this.$el.find('.edit-body').val('').hide().next('.body').fadeIn(400);
-  // },
-
-  // editProjectUrl: function() {
-  // this.$el.addClass('editing');
-  // this.$el.find('.edit-url').show().focus().next('a').hide();
-  // },
 
 });
