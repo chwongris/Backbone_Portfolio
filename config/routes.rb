@@ -1,6 +1,14 @@
 BackbonePortfolio::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+
+
+  devise_for :users
+
+resources :users do
+  resources :projects, :only => [:create, :index, :update, :destroy]
+end
+
+
+
 
 
   # Sample of regular route:

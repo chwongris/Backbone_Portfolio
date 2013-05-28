@@ -38,15 +38,16 @@ app.views.SkillView = Backbone.View.extend({
   },
 
   updateSkill: function() {
-   $(event.target).hide().prev('.name').show();
+   // $(event.target).hide().prev('.name').show();
    var newName = $(event.target).val();
    this.model.set({ name : newName });
-   if(this.model.isNew()){
-    this.options.project.skillList.create(this.model);
-   }
-   else {
-    this.model.save();
-  }
+   // this.model.project.skills.set(this.model);
+   // if(this.model.isNew()){
+   //  this.options.project.skillList.create(this.model);
+   // }
+   // else {
+    // this.model.project.skills.save();
+  
   }
 
 

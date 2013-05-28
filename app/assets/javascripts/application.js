@@ -10,16 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery-1.9.1.min
+//= require jquery
 //= require underscore-min
-//= require ejs_production
-//= require backbone-min
-//= require backbone.localStorage-min
-//= require boot
-//= require router
-
-//= require_tree ./models
-//= require_tree ./collections
-//= require_tree ./templates
-//= require_tree ./views
-//= require init
+//= require jquery_ujs
