@@ -1,9 +1,8 @@
 //= require ejs_production
+//= require hogan.js
 //= require backbone-min
-
 //= require boot
 //= require router
-
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./templates

@@ -3,9 +3,19 @@ BackbonePortfolio::Application.routes.draw do
 
   devise_for :users
 
-resources :users do
-  resources :projects, :only => [:create, :index, :update, :destroy]
-end
+  resources :users do
+    resources :projects, :only => [:create, :index, :update, :destroy]
+
+    collection do
+     get :me
+    end
+
+    member do
+      get :followers
+    end
+
+
+ end
 
 
 

@@ -16,7 +16,7 @@ app.models.Project = Backbone.Model.extend({
     this.skillList = this.skillList || new app.collections.SkillList();
   },
 
-  // getSkills: function(){
+  // getSkills: function(){ 
   //   this.skillList.fetch();
   //   return this.skillList.where({ project_id : this.id });
   // },
@@ -24,7 +24,7 @@ app.models.Project = Backbone.Model.extend({
   parse: function(response) {
     var skills_json = response.skills;
     //response.skills = new app.collections.SkillList(skills_json);
-    this.skills = new app.collections.SkillList(skills_json);
+    this.skillList = new app.collections.SkillList(skills_json);
     return response;
   },
 

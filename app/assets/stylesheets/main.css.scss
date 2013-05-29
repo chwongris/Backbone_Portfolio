@@ -19,22 +19,21 @@ body {
 
 
 .skill input {
-  border: 0px;
-  padding: 0px;
+  border: 0em;
+  padding: 0em;
   position: relative;
-  top: -2px;
   outline: none;
   float: left;
 }
 
 #content {
-  width: 900px;
+  width: 60em;
   background: white;
-  padding: 20px;
-  border-radius: 6px;
+  padding: 2em;
+  border-radius: 0.5em;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 2px 2px 14px #6699CC;
+  box-shadow: 0.5em 0.5em 2em #6699CC;
 }
 
 h1,h2,h3,h4,h5 {
@@ -44,7 +43,7 @@ h1,h2,h3,h4,h5 {
 h1.name {
   /*font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;*/
   font-size: 4em;
-  text-shadow: 2px 1px 1px #999;
+  text-shadow: 0.1em 0.05em 0.05em #999;
   margin-bottom: 0.25em;
 }
 
@@ -61,7 +60,7 @@ ul {
 }
 
 #bio {
-  height: 200px;
+  height: 15em;
 }
 
 .bio-image {
@@ -69,23 +68,23 @@ ul {
 }
 
 .bio-text {
-  margin-left: 220px;
+  margin-left: 14em;
   position: relative;
-  top: -12px;
+
 }
 
 .shadowed {
-  border-radius: 6px;
-  box-shadow: 1px 2px 6px #999999;
+  border-radius: 1em;
+  box-shadow: 1em 2em 6em #999999;
 }
 
 #projects {
-  margin-top: 50px;
+  margin-top: 5em;
   clear: left;
 }
 
 .project, .new-project {
-  padding-top: 20px;
+  padding-top: 5em;
   clear: left;
 }
 
@@ -96,18 +95,18 @@ ul {
   cursor: move;
   float:left;
   position: relative;
-  top: 60px;
+  top: 4.5em;
 }
 
 .info {
-  margin-left: 20px;
-  width: 820px;
+  margin-left: 1em;
+  width: 40em;
   float: left;
 }
 
 .project-image {
   float: left;
-  margin-right: 20px;
+  margin-right: 1em;
 }
 
 .project-details {
@@ -115,8 +114,8 @@ ul {
 }
 
 .skills {
-  font-size: 12px;
-  height: 60px;
+  font-size: 0.8em;
+  height: 3em;
 }
 
 ul.skill-list li {
@@ -126,7 +125,7 @@ ul.skill-list li {
 .skill {
   display: inline-block;
   position: relative;
-  top: 2px;
+  top: 0.1em;
   float: left;
   margin-bottom: 4px;
   margin-right: 6px;
@@ -138,17 +137,17 @@ ul.skill-list li {
 }
 
 .edit-body{
-  width: 400px;
-  height: 50px;
+  width: 20em;
+  height: 3em;
 }
 
 .body {
-  margin-left: 370px;
+  margin-left: 20em;
 }
 
 .body ul {
   list-style-type: square;
-  padding-left: 20px;
+  padding-left: 1em;
 
 }
 
@@ -200,4 +199,55 @@ ul.skill-list li {
 
 .clear {
   clear: both;
+}
+
+
+.myButton {
+  
+  -moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
+  -webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
+  box-shadow: 0px 1px 0px 0px #f0f7fa;
+  
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+  background:-moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+  background:-webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+  background:-o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+  background:-ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+  background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+  
+  background-color:#33bdef;
+  
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  
+  border:1px solid #057fd0;
+  
+  display:inline-block;
+  color:#ffffff;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  
+  text-shadow:0px -1px 0px #5b6178;
+  
+}
+.myButton:hover {
+  
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+  background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+  background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+  background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+  background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+  background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+  
+  background-color:#019ad2;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
 }

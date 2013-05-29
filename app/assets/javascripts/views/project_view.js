@@ -29,7 +29,7 @@ app.views.ProjectView = Backbone.View.extend({
           user_id: _this.model.id
         });
 
-       _this.listenTo(_this.model.projectList, 'add', _this.render);
+       _this.listenTo(_this.model.projectList, 'change', _this.render);
 
 
         _this.render();
@@ -44,24 +44,19 @@ app.views.ProjectView = Backbone.View.extend({
 
 
     // Create a dummy project if there isn't one already
-    // _this.model.projectList.add({
-    //       title: "New Project",
-    //       url: "Click to edit",
-    //       body: "Click to edit",
-    //       user_id: _this.model.id
-    //     });
+   
 
     this.model.projectList.forEach(function(project) {
-      var view = new app.views._Project({ model: project, collection: _this.model.projectList });
+      var view = new app.views._Project({ model: project, id: _this.model, collection: _this.model.projectList });
       _this.$el.find('#project-list').append(view.render().el);
      
     });
 
-    var bio = new app.views.UserView({
-      model: this.model
-    }).render();
+    var bio = new app.views.UserView({ model: this.model, collection: this.model.followers }).render();
 
     this.$el.find('#user-bio').html(bio.el);
+
+    
 
     return this;
   }

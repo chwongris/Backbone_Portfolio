@@ -18,33 +18,33 @@ app.views._Project = Backbone.View.extend({
 
 
   initialize: function() {
-   // this.listenTo(this.model, 'change', this.render);
-   // this.listenTo(this.model, 'destroy', this.remove);
-   // this.listenTo(this.model.skills, 'add', this.render);
-   // this.listenTo(this.model.skills, 'change', this.update);
+   this.listenTo(this.model, 'destroy', this.remove);
+   this.listenTo(this.model.skillList, 'add', this.render);
+   this.listenTo(this.model.skillList, 'change', this.update);
  },
 
 
  render: function() {
 
-  var _this = this;
 
-  this.$el.html(this.template({project: _this.model}));
+
+  this.$el.html(this.template({project: this.model}));
     // this.model.skillList.fetch();
 
-    //why did i have to insert model
-    // this.model.skillList.forEach(function(skill) {
-    //   skill.project = _this.model;
-    //   var skill_view = new app.views.SkillView({ model: skill });
-    //   _this.$el.find('#skill-list').append(skill_view.render().el);
-    // });    
+  var _this = this;
+    
+    this.model.skillList.forEach(function(skill) {
+      skill.project = _this.model;
+      var skill_view = new app.views.SkillView({ model: skill });
+      _this.$el.find('#skill-list').append(skill_view.render().el);
+    });    
 
     return this;
   },
 
-  // update: function() {
-  //   this.model.save();
-  // },
+  update: function() {
+    this.model.save();
+  },
 
   // editProjectName: function() {
   //   this.$el.addClass('editing');
@@ -65,6 +65,12 @@ app.views._Project = Backbone.View.extend({
 
     if(this.model.isNew()) {
       this.collection.create(this.model);
+          this.collection.add({
+          title: "New Project",
+          url: "Click to edit",
+          body: "Click to edit",
+          user_id: this.id.id
+        });
     }
     else {
       this.model.save();
@@ -109,16 +115,18 @@ app.views._Project = Backbone.View.extend({
 
   addSkill: function() {
 
+
     var skill = new app.models.Skill({
         name: "Click here to edit",
         project: this.model
       });
     
 
-    this.model.skills.add(skill);
+    this.model.skillList.add(skill);
 
 
-    // this.$el.find('#skill-list').append(skill.render().el).find('.skill:last').hide().fadeIn();
+
+    // this.$el.find('#skill-list').append(skill.view.render().el).find('.skill:last').hide().fadeIn();
   }
 
 });
