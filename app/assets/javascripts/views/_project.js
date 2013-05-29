@@ -31,7 +31,7 @@ app.views._Project = Backbone.View.extend({
   this.$el.html(this.template({project: this.model}));
     // this.model.skillList.fetch();
 
-  var _this = this;
+    var _this = this;
     
     this.model.skillList.forEach(function(skill) {
       skill.project = _this.model;
@@ -60,17 +60,17 @@ app.views._Project = Backbone.View.extend({
   updateTitle: function() {
     var new_title = $(event.target).val().trim();
 
-   
+    
     this.model.set("title", new_title);
 
     if(this.model.isNew()) {
       this.collection.create(this.model);
-          this.collection.add({
-          title: "New Project",
-          url: "Click to edit",
-          body: "Click to edit",
-          user_id: this.id.id
-        });
+      this.collection.add({
+        title: "New Project",
+        url: "Click to edit",
+        body: "Click to edit",
+        user_id: this.id.id
+      });
     }
     else {
       this.model.save();
@@ -78,7 +78,7 @@ app.views._Project = Backbone.View.extend({
 
   },
 
-   toggleTitle: function() {
+  toggleTitle: function() {
     this.$el.find('.edit-title').toggle().focus().prev('h3').toggle();
   },
 
@@ -117,9 +117,9 @@ app.views._Project = Backbone.View.extend({
 
 
     var skill = new app.models.Skill({
-        name: "Click here to edit",
-        project: this.model
-      });
+      name: "Click here to edit",
+      project: this.model
+    });
     
 
     this.model.skillList.add(skill);

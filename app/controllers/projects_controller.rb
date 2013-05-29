@@ -1,13 +1,11 @@
 class ProjectsController < ApplicationController
 
-before_filter :load_user
+  before_filter :load_user
 
   def create
     @project = Project.new(params[:project])
     @project.save!
-
     render :json => @project
-
   end
 
 
@@ -19,14 +17,12 @@ before_filter :load_user
   def update
     @project = Project.find(params[:id])
     @project.update_attributes(params[:project])
-
     render :json => @project
   end
 
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-  
     render :json => @project
   end
 

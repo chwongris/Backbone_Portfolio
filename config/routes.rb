@@ -14,7 +14,6 @@ BackbonePortfolio::Application.routes.draw do
       get :followers
     end
 
-
  end
 
 

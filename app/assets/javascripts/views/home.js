@@ -2,8 +2,7 @@
 app.views.Home = Backbone.View.extend({
 
   template: JST['templates/home'],
-
-   events: {
+  events: {
     'click .user-link' : 'showUser'
   },
 
@@ -21,7 +20,7 @@ app.views.Home = Backbone.View.extend({
          _this.$el.find("#users").append("<li><img src='" + user.attributes.image_url + "''><a href='#' class='user-link' data-id='" + user.id + "'>" + user.full_name() + "</a></li>");
        });
       }
-  });
+    });
 
     return this;
   },
@@ -29,7 +28,7 @@ app.views.Home = Backbone.View.extend({
   showUser: function() {
     event.preventDefault();
     var id = $(event.target).data("id");
-   new app.Router().navigate('/users/' + id, {trigger: true});
-    }
+    new app.Router().navigate('/users/' + id, {trigger: true});
+  }
 
 });

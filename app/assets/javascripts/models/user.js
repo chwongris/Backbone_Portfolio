@@ -8,9 +8,9 @@ app.models.User = Backbone.Model.extend({
   this.followers = new app.collections.UserList();
   this.followers.url = '/users/' + this.id + '/followers';
   this.followers.on("reset", this.updateCounts);
- },
+},
 
-  url: function() {
+url: function() {
   return '/users/' + this.id;
 },
 
